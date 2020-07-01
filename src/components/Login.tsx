@@ -1,6 +1,8 @@
 import React from 'react';
 
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField/TextField';
 
 const useStyles = makeStyles((theme) => ({
   login: {
@@ -19,8 +21,10 @@ const useStyles = makeStyles((theme) => ({
   },
   form__title: {
     margin: '0 0 48px',
-    fontSize: 24,
     color: '#3D5170',
+  },
+  form__input: {
+    width: '100%',
   },
 }));
 
@@ -29,7 +33,18 @@ const Login = (): JSX.Element => {
   return (
     <div className={classes.login}>
       <div className={classes.form}>
-        <div className={classes.form__title}>Авторизация</div>
+        <Typography variant='h5' component='h1' className={classes.form__title}>
+          Авторизация
+        </Typography>
+        <form>
+          <TextField
+            label='Email'
+            variant='outlined'
+            type='email'
+            required
+            className={classes.form__input}
+          />
+        </form>
       </div>
     </div>
   );
