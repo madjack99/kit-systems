@@ -77,8 +77,20 @@ const Login = (): JSX.Element => {
     event.preventDefault();
   };
 
-  const handleSubmit = (event: React.SyntheticEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    console.log('test');
     event.preventDefault();
+
+    const response = await fetch('http://94.130.172.45:8000/api/v1/token/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    });
+    console.log(response.status);
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
@@ -87,7 +99,7 @@ const Login = (): JSX.Element => {
         <Typography variant='h5' component='h1' className={classes.title}>
           Авторизация
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             label='Email'
             type='email'
@@ -127,7 +139,6 @@ const Login = (): JSX.Element => {
             color='primary'
             className={classes.form__submit}
             type='submit'
-            onSubmit={handleSubmit}
           >
             Войти
           </Button>
