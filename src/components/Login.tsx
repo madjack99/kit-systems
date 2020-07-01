@@ -77,6 +77,10 @@ const Login = (): JSX.Element => {
     event.preventDefault();
   };
 
+  const handleSubmit = (event: React.SyntheticEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
   return (
     <div className={classes.loginBackground}>
       <div className={classes.loginContents}>
@@ -122,6 +126,8 @@ const Login = (): JSX.Element => {
             variant='contained'
             color='primary'
             className={classes.form__submit}
+            type='submit'
+            onSubmit={handleSubmit}
           >
             Войти
           </Button>
