@@ -5,8 +5,10 @@ import {
   Button,
   Typography,
   Modal,
+  DialogContent,
 } from '@material-ui/core';
 
+import BasicInfo from './forms/BasicInfo';
 import { customBreakpoint } from '../../settings';
 
 const useStyles = makeStyles((theme) =>
@@ -51,7 +53,9 @@ const Header = () => {
         aria-labelledby='basic-info-form'
         aria-describedby='add-company-basic-info'
       >
-        <div>Modal</div>
+        <DialogContent>
+          <BasicInfo />
+        </DialogContent>
       </Modal>
     </header>
   );

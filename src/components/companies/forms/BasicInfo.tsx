@@ -1,7 +1,9 @@
 import React from 'react';
 
-const BasicInfo = () => {
-  return <div>Basic info</div>;
-};
+type Ref = HTMLDivElement;
+
+const BasicInfo = React.forwardRef<Ref>((props, ref) => {
+  return <div ref={ref}> Basic info</div>;
+});
 
 export default BasicInfo;
