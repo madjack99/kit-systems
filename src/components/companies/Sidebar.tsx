@@ -9,26 +9,31 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     sidebar: {
       gridRow: '1 / 3',
-      padding: '29px 46px 29px 35px',
+      padding: '29px 0',
       background: '#ffffff',
       boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
       [theme.breakpoints.down(600)]: {
         gridRow: '1 / 2',
-        background: 'yellow',
+        display: 'flex',
+        justifyContent: 'space-around',
       },
     },
     logo: {
-      display: 'block',
-      margin: '0 0 29px',
+      margin: '0 46px 39px 35px',
     },
     menu: {
-      listStyle: 'none',
+      margin: 0,
       padding: 0,
+      listStyle: 'none',
+      [theme.breakpoints.down(600)]: {
+        display: 'flex',
+      },
     },
     menu__item: {
       display: 'flex',
       alignItems: 'center',
       height: 50,
+      padding: '0 32px',
       cursor: 'pointer',
       '&:hover': {
         background: theme.palette.greyBackground.main,
@@ -44,7 +49,13 @@ const Sidebar = () => {
   const classes = useStyles();
   return (
     <aside className={classes.sidebar}>
-      <img className={classes.logo} src={Logo} alt='Logo' />
+      <img
+        className={classes.logo}
+        src={Logo}
+        alt='Logo'
+        width='169'
+        height='52'
+      />
       <ul className={classes.menu}>
         <li className={classes.menu__item}>
           <AssignmentIcon className={classes.menu__icon} color='primary' />
