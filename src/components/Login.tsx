@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -55,6 +56,8 @@ interface State {
 
 const Login = (): JSX.Element => {
   const classes = useStyles();
+  const history = useHistory();
+  const [loginError, setLoginError] = React.useState(null);
   const [values, setValues] = React.useState<State>({
     email: '',
     password: '',
@@ -78,19 +81,31 @@ const Login = (): JSX.Element => {
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    console.log('test');
     event.preventDefault();
+    let response;
+    let data;
 
-    const response = await fetch('http://94.130.172.45:8000/api/v1/token/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    });
-    console.log(response.status);
-    const data = await response.json();
-    console.log(data);
+    try {
+      response = await fetch('http://94.130.172.45:8000/api/v1/token/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      data = await response.json();
+    } catch (error) {
+      console.log('Connection Error');
+    }
+
+    if (response && response.status === 200) {
+      localStorage.setItem('token', data.access);
+
+      history.push('/companies');
+    } else if (response && response.status !== 200) {
+      setLoginError(data.detail);
+    }
   };
 
   return (
