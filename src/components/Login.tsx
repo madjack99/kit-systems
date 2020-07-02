@@ -16,6 +16,8 @@ import Alert from '@material-ui/lab/Alert';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
+import { rootEndPoint } from '../settings';
+
 const useStyles = makeStyles((theme) => ({
   loginBackground: {
     display: 'flex',
@@ -92,7 +94,7 @@ const Login = (): JSX.Element => {
     let data;
 
     try {
-      response = await fetch('http://94.130.172.45:8000/api/v1/token/', {
+      response = await fetch(`${rootEndPoint}token/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

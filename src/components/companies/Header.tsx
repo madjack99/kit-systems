@@ -6,6 +6,8 @@ import {
   Typography,
 } from '@material-ui/core';
 
+import { customBreakpoint } from '../../settings';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     header: {
@@ -15,7 +17,7 @@ const useStyles = makeStyles((theme) =>
       padding: '25px 72px 22px',
       background: '#ffffff',
       color: '#3D5170',
-      [theme.breakpoints.down(600)]: {
+      [theme.breakpoints.down(customBreakpoint)]: {
         borderTop: '1px solid lightgrey',
       },
     },

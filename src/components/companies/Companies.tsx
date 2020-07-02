@@ -5,6 +5,8 @@ import Table from './Table';
 
 import { makeStyles, createStyles } from '@material-ui/core';
 
+import { customBreakpoint } from '../../settings';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     grid: {
@@ -12,7 +14,7 @@ const useStyles = makeStyles((theme) =>
       gridTemplateColumns: '250px auto',
       gridTemplateRows: '76px auto',
       minHeight: '100vh',
-      [theme.breakpoints.down(600)]: {
+      [theme.breakpoints.down(customBreakpoint)]: {
         gridTemplateColumns: 'auto',
         gridTemplateRows: '100px 100px auto',
       },

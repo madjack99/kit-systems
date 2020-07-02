@@ -5,6 +5,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles, createStyles } from '@material-ui/core';
 
 import Logo from './images/Logo.svg';
+import { customBreakpoint } from '../../settings';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -13,7 +14,7 @@ const useStyles = makeStyles((theme) =>
       padding: '29px 0',
       background: '#ffffff',
       borderRight: '1px solid lightgrey',
-      [theme.breakpoints.down(600)]: {
+      [theme.breakpoints.down(customBreakpoint)]: {
         gridRow: '1 / 2',
         display: 'flex',
         justifyContent: 'space-around',
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) =>
       margin: 0,
       padding: 0,
       listStyle: 'none',
-      [theme.breakpoints.down(600)]: {
+      [theme.breakpoints.down(customBreakpoint)]: {
         display: 'flex',
       },
     },

@@ -3,6 +3,8 @@ import MaterialTable from 'material-table';
 
 import { makeStyles } from '@material-ui/core';
 
+import { rootEndPoint } from '../../settings';
+
 const useStyles = makeStyles((theme) => ({
   tableWrapper: {
     padding: '47px 78px 99px 69px',
@@ -15,7 +17,7 @@ const Table = () => {
   const [companies, setCompanies] = React.useState([]);
 
   React.useEffect(() => {
-    fetch('http://94.130.172.45:8000/api/v1/companies/')
+    fetch(`${rootEndPoint}companies/`)
       .then((res) => res.json())
       .then((data) => {
         const { results } = data;
@@ -34,6 +36,7 @@ const Table = () => {
           actionsColumnIndex: 5,
           search: false,
           showTitle: false,
+          filtering: true,
         }}
         columns={[
           { title: 'Наименование компании', field: 'name' },
