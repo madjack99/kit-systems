@@ -4,6 +4,7 @@ import {
   createStyles,
   Button,
   Typography,
+  Modal,
 } from '@material-ui/core';
 
 import { customBreakpoint } from '../../settings';
@@ -26,14 +27,32 @@ const useStyles = makeStyles((theme) =>
 
 const Header = () => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <header className={classes.header}>
       <Typography variant='h5' component='h1'>
         Клиенты
       </Typography>
-      <Button variant='contained' color='primary'>
+      <Button variant='contained' color='primary' onClick={handleOpen}>
         Добавить
       </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='basic-info-form'
+        aria-describedby='add-company-basic-info'
+      >
+        <div>Modal</div>
+      </Modal>
     </header>
   );
 };
