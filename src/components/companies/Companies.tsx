@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     grid: {
       display: 'grid',
-      gridTemplateColumns: '100px auto',
+      gridTemplateColumns: '250px auto',
       gridTemplateRows: '100px auto',
       minHeight: '100vh',
       [theme.breakpoints.down(600)]: {
