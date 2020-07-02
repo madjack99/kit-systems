@@ -10,9 +10,7 @@ import { myTheme } from './theme';
 ReactDOM.render(
   <ThemeProvider theme={myTheme}>
     <CssBaseline />
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </ThemeProvider>,
   document.getElementById('root')
 );

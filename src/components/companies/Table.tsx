@@ -1,17 +1,39 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
-import classes from '*.module.css';
-
-const useStyles = makeStyles({
-  table: {},
-});
+import MaterialTable from 'material-table';
 
 const Table = () => {
-  const classes = useStyles();
   return (
-    <div className={classes.table} style={{ background: 'blue' }}>
-      Table
-    </div>
+    <MaterialTable
+      title='Title'
+      options={{
+        actionsColumnIndex: 5,
+        search: false,
+        showTitle: false,
+      }}
+      columns={[
+        { title: 'Наименование компании', field: 'name' },
+        { title: 'Тип юр.лица', field: 'type' },
+        { title: 'Регион', field: 'region' },
+        { title: 'Город', field: 'city' },
+      ]}
+      data={[
+        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+      ]}
+      actions={[
+        {
+          icon: 'delete',
+          tooltip: 'Delete user',
+          onClick: (event, rowData) => {
+            console.log('click');
+          },
+        },
+        {
+          icon: 'edit',
+          tooltip: 'Edit user',
+          onClick: (event, rowData) => {},
+        },
+      ]}
+    />
   );
 };
 
