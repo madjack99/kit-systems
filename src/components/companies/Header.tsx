@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme) =>
         borderTop: '1px solid lightgrey',
       },
     },
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   })
 );
 
@@ -50,12 +55,11 @@ const Header = () => {
       <Modal
         open={open}
         onClose={handleClose}
+        className={classes.modal}
         aria-labelledby='basic-info-form'
         aria-describedby='add-company-basic-info'
       >
-        <DialogContent>
-          <BasicInfo />
-        </DialogContent>
+        <BasicInfo />
       </Modal>
     </header>
   );
