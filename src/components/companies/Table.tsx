@@ -12,11 +12,24 @@ const useStyles = makeStyles((theme) => ({
 
 const Table = () => {
   const classes = useStyles();
+  const [companies, setCompanies] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch('http://94.130.172.45:8000/api/v1/companies/')
+      .then((res) => res.json())
+      .then((data) => {
+        const { results } = data;
+        const mappedResults = results.map((company: any) => {
+          const { name, registered_type, region, city } = company;
+          return { name, registered_type, region, city };
+        });
+        setCompanies(mappedResults);
+      });
+  }, []);
 
   return (
     <div className={classes.tableWrapper}>
       <MaterialTable
-        title='Title'
         options={{
           actionsColumnIndex: 5,
           search: false,
@@ -24,13 +37,11 @@ const Table = () => {
         }}
         columns={[
           { title: 'Наименование компании', field: 'name' },
-          { title: 'Тип юр.лица', field: 'type' },
+          { title: 'Тип юр.лица', field: 'registered_type' },
           { title: 'Регион', field: 'region' },
           { title: 'Город', field: 'city' },
         ]}
-        data={[
-          { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        ]}
+        data={companies}
         actions={[
           {
             icon: 'delete',

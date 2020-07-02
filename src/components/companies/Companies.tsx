@@ -3,7 +3,6 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 import Table from './Table';
 
-import { Grid } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>
