@@ -12,6 +12,7 @@ import {
   Typography,
   TextField,
 } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   loginContents: {
     width: 396,
-    height: 376,
+    minHeight: 376,
     margin: 'auto',
     padding: '40px 34px 0',
     backgroundColor: '#fff',
@@ -41,9 +42,14 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     margin: '0 0 28px',
   },
+  alert: {
+    margin: '0 0 28px',
+    textAlign: 'left',
+  },
   form__submit: {
     width: 99,
     height: 36,
+    margin: '0 0 28px',
     padding: '10px 15px',
   },
 }));
@@ -149,6 +155,11 @@ const Login = (): JSX.Element => {
               labelWidth={70}
             />
           </FormControl>
+          {loginError && (
+            <Alert severity='error' className={classes.alert}>
+              {loginError}
+            </Alert>
+          )}
           <Button
             variant='contained'
             color='primary'
