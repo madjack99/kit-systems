@@ -1,7 +1,8 @@
 import React from 'react';
-import { Grid, makeStyles, createStyles } from '@material-ui/core';
+
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { makeStyles, createStyles } from '@material-ui/core';
 
 import Logo from './images/Logo.svg';
 
@@ -11,11 +12,12 @@ const useStyles = makeStyles((theme) =>
       gridRow: '1 / 3',
       padding: '29px 0',
       background: '#ffffff',
-      boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+      borderRight: '1px solid lightgrey',
       [theme.breakpoints.down(600)]: {
         gridRow: '1 / 2',
         display: 'flex',
         justifyContent: 'space-around',
+        borderRight: 'none',
       },
     },
     logo: {

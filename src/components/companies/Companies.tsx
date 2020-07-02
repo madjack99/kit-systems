@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) =>
     grid: {
       display: 'grid',
       gridTemplateColumns: '250px auto',
-      gridTemplateRows: '100px auto',
+      gridTemplateRows: '76px auto',
       minHeight: '100vh',
       [theme.breakpoints.down(600)]: {
         gridTemplateColumns: 'auto',
