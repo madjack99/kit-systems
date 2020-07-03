@@ -5,7 +5,6 @@ import {
   Button,
   Typography,
   Modal,
-  DialogContent,
 } from '@material-ui/core';
 
 import BasicInfo from './forms/BasicInfo';

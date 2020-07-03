@@ -7,6 +7,8 @@ import {
   Button,
 } from '@material-ui/core';
 
+import { rootEndPoint } from '../../../settings';
+
 const useStyles = makeStyles({
   formWrapper: {
     width: 560,
@@ -78,7 +80,7 @@ const BasicInfo = React.forwardRef<Ref>((props, ref) => {
   const displayFields = () => {
     return namesAndLabels.map(({ fieldLabel, fieldTitle }) => {
       return (
-        <Grid item sm={6} className={classes.form__field}>
+        <Grid item sm={6} className={classes.form__field} key={fieldTitle}>
           <TextField
             type='text'
             variant='outlined'
@@ -94,9 +96,32 @@ const BasicInfo = React.forwardRef<Ref>((props, ref) => {
     });
   };
 
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    let response;
+    let data;
+
+    try {
+      response = await fetch(`${rootEndPoint}companies`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(basicInfo),
+      });
+    } catch (error) {
+      console.log('Network error');
+    }
+
+    if (response) {
+      data = await response.json();
+      console.log(data);
+    }
+  };
+
   return (
     <div ref={ref} className={classes.formWrapper} tabIndex={-1}>
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={handleSubmit}>
         <Typography
           align='left'
           variant='h5'
