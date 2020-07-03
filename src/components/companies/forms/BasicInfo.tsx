@@ -32,32 +32,66 @@ const useStyles = makeStyles({
 
 type Ref = HTMLDivElement;
 
+interface BasicInfo {
+  name: String;
+  shortname: String;
+  registered_type: String;
+  workscope: String;
+  region: String;
+  city: String;
+  email: String;
+  phone: String;
+}
+
 const BasicInfo = React.forwardRef<Ref>((props, ref) => {
   const classes = useStyles();
+  const [basicInfo, setBasicInfo] = React.useState({
+    name: '',
+    shortname: '',
+    registered_type: '',
+    workscope: '',
+    region: '',
+    city: '',
+    email: '',
+    phone: '',
+    description: '',
+  });
 
-  const fieldsTitles = [
-    'Наименование компании',
-    'Короткое название',
-    'Тип юр.лица',
-    'Сфера деятельности',
-    'Регион',
-    'Город',
-    'Email',
-    'Телефон',
+  const namesAndLabels = [
+    { fieldLabel: 'Наименование компании', fieldTitle: 'name' },
+    { fieldLabel: 'Короткое название', fieldTitle: 'shortname' },
+    { fieldLabel: 'Тип юр.лица', fieldTitle: 'registered_type' },
+    { fieldLabel: 'Сфера деятельности', fieldTitle: 'workscope' },
+    { fieldLabel: 'Регион', fieldTitle: 'region' },
+    { fieldLabel: 'Город', fieldTitle: 'city' },
+    { fieldLabel: 'Email', fieldTitle: 'email' },
+    { fieldLabel: 'Телефон', fieldTitle: 'phone' },
   ];
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBasicInfo({
+      ...basicInfo,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const displayFields = () => {
-    return fieldsTitles.map((title) => (
-      <Grid item sm={6} className={classes.form__field}>
-        <TextField
-          type='text'
-          variant='outlined'
-          label={title}
-          required
-          className={classes.form__input}
-        />
-      </Grid>
-    ));
+    return namesAndLabels.map(({ fieldLabel, fieldTitle }) => {
+      return (
+        <Grid item sm={6} className={classes.form__field}>
+          <TextField
+            type='text'
+            variant='outlined'
+            label={fieldLabel}
+            required
+            name={fieldTitle}
+            className={classes.form__input}
+            value={basicInfo[fieldTitle as keyof BasicInfo]}
+            onChange={handleChange}
+          />
+        </Grid>
+      );
+    });
   };
 
   return (
@@ -82,6 +116,9 @@ const BasicInfo = React.forwardRef<Ref>((props, ref) => {
               fullWidth
               multiline={true}
               rows={4}
+              name='description'
+              value={basicInfo.description}
+              onChange={handleChange}
             />
           </Grid>
         </Grid>
